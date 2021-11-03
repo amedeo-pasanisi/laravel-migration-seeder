@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Trip;
+use Faker\Generator as Faker;
 
 class TripsTableSeeder extends Seeder
 {
@@ -10,11 +11,13 @@ class TripsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        $new_trip = new Trip();
-        $new_trip->departure = 'italy';
-        $new_trip->destination = 'france';
-        $new_trip->save();
+        for ($i=0; $i<20; $i++ ) {
+            $new_trip = new Trip();
+            $new_trip->departure = $faker->state();
+            $new_trip->destination = $faker->state();
+            $new_trip->save();
+        }
     }
 }
